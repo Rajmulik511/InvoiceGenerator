@@ -501,19 +501,33 @@ tbody tr:nth-child(even) {
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
-        padding: 10px;
+        padding: 5px;
     }
 
     .header {
-        padding: 15px;
+        padding: 10px;
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
     }
 
     .logo-section {
         flex-direction: column;
         text-align: center;
-        gap: 15px;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 2rem;
+        padding: 10px;
+        min-width: 50px;
+    }
+
+    .company-info h1 {
+        font-size: 1.2rem;
+    }
+
+    .company-info p {
+        font-size: 0.8rem;
     }
 
     .settings-btn {
@@ -521,13 +535,173 @@ tbody tr:nth-child(even) {
     }
 
     .btn-settings {
-        padding: 8px 14px;
+        padding: 8px 12px;
         font-size: 0.8rem;
+    }
+
+    .form-section, .preview-section {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .form-section h2, .preview-section h2 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+
+    .form-section h3 {
+        font-size: 1.1rem;
+        margin: 15px 0 10px 0;
+    }
+
+    .bill-info {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 250px;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+
+    .invoice-preview {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    .invoice-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .invoice-logo {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .invoice-logo .logo {
+        font-size: 2rem;
+        padding: 10px;
+    }
+
+    .company-details h2 {
+        font-size: 1.3rem;
+    }
+
+    .company-details p {
+        font-size: 0.8rem;
+    }
+
+    .invoice-meta {
+        text-align: center;
+    }
+
+    .invoice-meta h1 {
+        font-size: 1.8rem;
+    }
+
+    .customer-details {
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+
+    .customer-details h3 {
+        font-size: 1.1rem;
+    }
+
+    .items-table {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 20px;
+    }
+
+    table {
+        min-width: 500px;
+        font-size: 0.8rem;
+    }
+
+    th, td {
+        padding: 8px 4px;
+        font-size: 0.75rem;
+    }
+
+    th {
+        font-size: 0.7rem;
+        letter-spacing: 0.3px;
+    }
+
+    .btn-warning {
+        font-size: 0.6rem;
+        padding: 4px 8px;
+    }
+
+    .totals-section {
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .totals {
+        min-width: 100%;
+        max-width: 300px;
+        padding: 15px;
+    }
+
+    .total-row {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+
+    .grand-total {
+        font-size: 1.1rem !important;
+        padding-top: 10px;
+        margin-top: 10px;
+    }
+
+    .gst-selection {
+        padding: 8px 0;
+    }
+
+    .gst-selection select {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+        min-width: 70px;
     }
 
     .modal-content {
         width: 95%;
-        margin: 5% auto;
+        margin: 2% auto;
+        max-height: 95vh;
     }
 
     .modal-header {
@@ -545,79 +719,248 @@ tbody tr:nth-child(even) {
     .modal-actions {
         flex-direction: column;
         align-items: center;
+        gap: 10px;
     }
 
     .modal-actions .btn {
         width: 100%;
         max-width: 200px;
     }
-
-    /* ...existing code... */
 }
 
 @media (max-width: 480px) {
-    .form-section {
-        padding: 15px;
+    .container {
+        padding: 3px;
     }
 
-    .invoice-preview {
-        padding: 20px;
+    .header {
+        padding: 8px;
     }
 
     .logo {
-        font-size: 2rem;
-        padding: 10px;
+        font-size: 1.8rem;
+        padding: 8px;
     }
 
     .company-info h1 {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
 
-    .invoice-meta h1 {
-        font-size: 1.8rem;
+    .company-info p {
+        font-size: 0.75rem;
     }
 
-    th, td {
-        padding: 8px 5px;
-        font-size: 0.8rem;
+    .form-section, .preview-section {
+        padding: 10px;
+    }
+
+    .form-section h2, .preview-section h2 {
+        font-size: 1.2rem;
+    }
+
+    .form-section h3 {
+        font-size: 1rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 8px;
+        font-size: 0.85rem;
     }
 
     .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+        padding: 10px 16px;
+        font-size: 0.85rem;
     }
 
-    .btn-warning {
-        font-size: 0.7rem;
-        padding: 6px 12px;
-    }
-}
-
-/* Print Styles */
-@media print {
-    body {
-        background: white;
-    }
-
-    .form-section,
-    .preview-section h2 {
-        display: none;
+    .btn-settings {
+        padding: 6px 10px;
+        font-size: 0.75rem;
     }
 
     .invoice-preview {
-        border: none;
-        box-shadow: none;
-        padding: 0;
+        padding: 10px;
     }
 
+    .invoice-logo .logo {
+        font-size: 1.5rem;
+        padding: 8px;
+    }
+
+    .company-details h2 {
+        font-size: 1.1rem;
+    }
+
+    .company-details p {
+        font-size: 0.75rem;
+    }
+
+    .invoice-meta h1 {
+        font-size: 1.5rem;
+    }
+
+    .customer-details {
+        padding: 10px;
+    }
+
+    table {
+        min-width: 450px;
+        font-size: 0.7rem;
+    }
+
+    th, td {
+        padding: 6px 3px;
+        font-size: 0.65rem;
+    }
+
+    .btn-warning {
+        font-size: 0.55rem;
+        padding: 3px 6px;
+    }
+
+    .totals {
+        padding: 10px;
+    }
+
+    .total-row {
+        font-size: 0.9rem;
+    }
+
+    .grand-total {
+        font-size: 1rem !important;
+    }
+
+    .gst-selection select {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+        min-width: 60px;
+    }
+
+    .modal-content {
+        width: 98%;
+        margin: 1% auto;
+    }
+
+    .modal-header {
+        padding: 10px 15px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .modal-body {
+        padding: 15px;
+    }
+
+    .close-btn {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 320px) {
     .container {
-        max-width: none;
-        padding: 0;
+        padding: 2px;
     }
 
-    .totals-section {
-        page-break-inside: avoid;
+    .form-section, .preview-section {
+        padding: 8px;
     }
+
+    .company-info h1 {
+        font-size: 0.9rem;
+    }
+
+    .form-section h2, .preview-section h2 {
+        font-size: 1.1rem;
+    }
+
+    table {
+        min-width: 400px;
+        font-size: 0.65rem;
+    }
+
+    th, td {
+        padding: 5px 2px;
+        font-size: 0.6rem;
+    }
+
+    .btn {
+        font-size: 0.8rem;
+        padding: 8px 14px;
+    }
+
+    .totals {
+        padding: 8px;
+    }
+
+    .total-row {
+        font-size: 0.8rem;
+    }
+
+    .grand-total {
+        font-size: 0.9rem !important;
+    }
+}
+
+/* Landscape orientation for small screens */
+@media (max-width: 768px) and (orientation: landscape) {
+    .header {
+        flex-direction: row;
+        padding: 8px;
+    }
+
+    .logo-section {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .company-info h1 {
+        font-size: 1rem;
+    }
+
+    .invoice-header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .invoice-logo {
+        flex-direction: row;
+    }
+
+    .invoice-meta {
+        text-align: right;
+    }
+}
+
+/* Ensure text doesn't overflow horizontally */
+* {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Prevent horizontal scrolling on main container */
+body {
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+/* Make sure tables are scrollable on mobile */
+.items-table {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure modal fits on small screens */
+.modal {
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 /* Loading Animation */
