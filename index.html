@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo" id="headerLogo">🏪</div>
+                <div class="company-info">
+                    <h1 id="headerCompanyName">Satish Traders</h1>
+                    <p id="headerAddress">Moti Chowk Phaltan</p>
+                    <p id="headerContact">Phone: (555) 123-4567 | Email: info@satishtraders.com</p>
+                    <p id="headerGst" style="font-size: 0.9rem; opacity: 0.8;">GST No: 27XXXXX1234X1Z5</p>
+                </div>
+            </div>
+            <div class="settings-btn">
+                <button type="button" id="settingsBtn" class="btn btn-settings" title="Business Settings">
+                    ⚙️ Settings
+                </button>
+            </div>
+        </header>
+
+        <!-- Invoice Form -->
+        <div class="form-section">
+            <h2>Create Invoice</h2>
+            
+            <!-- Bill Info -->
+            <div class="bill-info">
+                <div class="form-group">
+                    <label for="billNumber">Bill Number:</label>
+                    <input type="text" id="billNumber" placeholder="INV-001" required>
+                </div>
+                <div class="form-group">
+                    <label for="billDate">Date:</label>
+                    <input type="date" id="billDate" required>
+                </div>
+            </div>
+
+            <!-- Customer Info -->
+            <div class="customer-info">
+                <h3>Customer Information</h3>
+                <div class="form-group">
+                    <label for="customerName">Customer Name:</label>
+                    <input type="text" id="customerName" placeholder="Customer Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerAddress">Address:</label>
+                    <textarea id="customerAddress" placeholder="Customer Address" rows="3"></textarea>
+                </div>
+            </div>
+
+            <!-- Item Entry -->
+            <div class="item-entry">
+                <h3>Add Items</h3>
+                <div class="item-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="itemName">Item Name:</label>
+                            <input type="text" id="itemName" placeholder="Product/Service Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" id="quantity" placeholder="1" min="1" step="1" value="1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pricePerUnit">Price per Unit:</label>
+                            <input type="number" id="pricePerUnit" placeholder="0.00" min="0" step="0.01">
+                        </div>
+                    </div>
+                    <button type="button" id="addItemBtn" class="btn btn-primary">Add Item</button>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button type="button" id="generatePdfBtn" class="btn btn-success">Generate PDF</button>
+                <button type="button" id="resetBtn" class="btn btn-danger">Reset Form</button>
+            </div>
+        </div>
+
+        <!-- Invoice Preview -->
+        <div class="preview-section">
+            <h2>Invoice Preview</h2>
+            <div class="invoice-preview" id="invoicePreview">
+                <div class="invoice-header">
+                    <div class="invoice-logo">
+                        <div class="logo" id="previewLogo">🏪</div>
+                        <div class="company-details">
+                            <h2 id="previewCompanyName">Satish Traders</h2>
+                            <p id="previewAddress">Moti Chowk Phaltan</p>
+                            <p id="previewContact">Phone: (555) 123-4567</p>
+                            <p id="previewGst" style="font-size: 0.9rem; color: #666;">GST No: 27XXXXX1234X1Z5</p>
+                        </div>
+                    </div>
+                    <div class="invoice-meta">
+                        <h1>INVOICE</h1>
+                        <p><strong>Bill No:</strong> <span id="previewBillNumber">-</span></p>
+                        <p><strong>Date:</strong> <span id="previewDate">-</span></p>
+                    </div>
+                </div>
+
+                <div class="customer-details">
+                    <h3>Bill To:</h3>
+                    <div id="previewCustomerName">-</div>
+                    <div id="previewCustomerAddress">-</div>
+                </div>
+
+                <div class="items-table">
+                    <table id="itemsTable">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Qty</th>
+                                <th>Rate</th>
+                                <th>Total</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="itemsTableBody">
+                            <tr class="no-items">
+                                <td colspan="5">No items added yet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="totals-section">
+                    <div class="totals">
+                        <div class="total-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotalAmount">₹0.00</span>
+                        </div>
+                        <div class="gst-selection">
+                            <label for="finalGstPercentage">Apply GST:</label>
+                            <select id="finalGstPercentage">
+                                <option value="0">0%</option>
+                                <option value="5">5%</option>
+                                <option value="12">12%</option>
+                                <option value="18" selected>18%</option>
+                                <option value="28">28%</option>
+                            </select>
+                        </div>
+                        <div class="total-row">
+                            <span>GST Amount:</span>
+                            <span id="totalGstAmount">₹0.00</span>
+                        </div>
+                        <div class="total-row grand-total">
+                            <span>Grand Total:</span>
+                            <span id="grandTotalAmount">₹0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Business Settings</h2>
+                <span class="close-btn" id="closeSettings">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="settingsForm">
+                    <div class="form-group">
+                        <label for="shopName">Shop Name:</label>
+                        <input type="text" id="shopName" value="Satish Traders" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="shopLogo">Shop Logo (Emoji or Text):</label>
+                        <input type="text" id="shopLogo" value="🏪" placeholder="🏪 or text">
+                        <small>You can use emoji or text as logo</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="shopAddress">Address:</label>
+                        <textarea id="shopAddress" rows="3" required>Moti Chowk Phaltan</textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="shopContact">Contact Information:</label>
+                        <input type="text" id="shopContact" value="Phone: (555) 123-4567 | Email: info@satishtraders.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="shopGst">GST Number:</label>
+                        <input type="text" id="shopGst" value="27XXXXX1234X1Z5" placeholder="GST Registration Number">
+                        <small>Enter your GST registration number</small>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" id="saveSettings" class="btn btn-success">Save Settings</button>
+                        <button type="button" id="resetSettings" class="btn btn-warning">Reset to Default</button>
+                        <button type="button" id="cancelSettings" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
